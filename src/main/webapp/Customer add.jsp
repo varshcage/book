@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -176,40 +177,6 @@
                            class="input-highlight w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
 
-                <!-- Additional Information Section -->
-                <div class="md:col-span-2 mt-6">
-                    <h3 class="text-lg font-medium text-gray-900 border-b pb-2 mb-4">
-                        <i class="fas fa-info-circle mr-2 text-indigo-600"></i>
-                        Additional Information
-                    </h3>
-                </div>
-
-                <div class="md:col-span-2">
-                    <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
-                    <textarea id="notes" name="notes" rows="3"
-                              class="input-highlight w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-                </div>
-
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Communication</label>
-                    <div class="space-y-2">
-                        <div class="flex items-center">
-                            <input id="emailComms" name="preferredComms" type="checkbox" value="email" checked
-                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                            <label for="emailComms" class="ml-2 block text-sm text-gray-700">Email</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="smsComms" name="preferredComms" type="checkbox" value="sms"
-                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                            <label for="smsComms" class="ml-2 block text-sm text-gray-700">SMS/Text</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="postalComms" name="preferredComms" type="checkbox" value="postal"
-                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                            <label for="postalComms" class="ml-2 block text-sm text-gray-700">Postal Mail</label>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">

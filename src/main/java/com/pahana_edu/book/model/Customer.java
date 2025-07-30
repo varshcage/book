@@ -3,10 +3,32 @@ package com.pahana_edu.book.model;
 import java.util.Date;
 public class Customer {
     private int id;
-    private String firstName,lastName, email, phone;
+    private String firstName, lastName, email, phone, gender;
     private Date birthDate, joinDate;
-    private String address, city, state, postalCode,country, gender;
-    private String memebershipType, notes, preferredComms;
+    private String streetAddress, city, state, postalCode, country;
+    private String membershipType;
+
+    public Customer() {}
+
+    // Constructor without ID for adding new customer
+    public Customer(String firstName, String lastName, String email, String phone, String gender,
+                    Date birthDate, Date joinDate, String streetAddress, String city, String state,
+                    String postalCode, String country, String membershipType) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.joinDate = joinDate;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.membershipType = membershipType;
+    }
 
     public int getId() {
         return id;
@@ -48,6 +70,14 @@ public class Customer {
         this.phone = phone;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public Date getBirthDate() {
         return birthDate;
     }
@@ -64,12 +94,12 @@ public class Customer {
         this.joinDate = joinDate;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
 
     public String getCity() {
@@ -104,35 +134,11 @@ public class Customer {
         this.country = country;
     }
 
-    public String getGender() {
-        return gender;
+    public String getMembershipType() {
+        return membershipType;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getMemebershipType() {
-        return memebershipType;
-    }
-
-    public void setMemebershipType(String memebershipType) {
-        this.memebershipType = memebershipType;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public String getPreferredComms() {
-        return preferredComms;
-    }
-
-    public void setPreferredComms(String preferredComms) {
-        this.preferredComms = preferredComms;
+    public void setMembershipType(String membershipType) {
+        this.membershipType = membershipType;
     }
 }
