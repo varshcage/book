@@ -36,7 +36,7 @@
         <div class="flex justify-center mb-4">
             <i class="fas fa-book-open text-5xl text-indigo-600"></i>
         </div>
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Book Haven</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">PahanEdu Book</h1>
         <p class="text-gray-600">Login to access your account</p>
     </div>
 
