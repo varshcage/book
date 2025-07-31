@@ -1,68 +1,78 @@
 package com.pahana_edu.book.servlet;
 
-import com.pahana_edu.book.DAO.CustomerDAO;
 import com.pahana_edu.book.model.Customer;
-
+import com.pahana_edu.book.DAO.CustomerDAO;
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
-@WebServlet("/AddCustomerServlet")
-public class AddCustomerServlet extends HttpServlet{
-    protected void doPost (HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException{
-         try{
-             request.setCharacterEncoding("UTF-8");
-             // Get form data
-             String firstName = request.getParameter("firstName");
-             String lastName = request.getParameter("lastName");
-             String email = request.getParameter("email");
-             String phone = request.getParameter("phone");
-             String gender = request.getParameter("gender");
+@WebServlet(name = "AddCustomerServlet", value = "/AddCustomerServlet")
+public class AddCustomerServlet extends HttpServlet {
+    private CustomerDAO customerDAO;
 
-             String birthDateStr = request.getParameter("birthDate");
-             String joinDateStr = request.getParameter("joinDate");
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        customerDAO = new CustomerDAO();
+    }
 
-             String streetAddress = request.getParameter("streetAddress");
-             String city = request.getParameter("city");
-             String state = request.getParameter("state");
-             String postalCode = request.getParameter("postalCode");
-             String country = request.getParameter("country");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get form parameters
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
 
-             String membershipType = request.getParameter("membershipType");
+        LocalDate birthDate = null;
+        if (request.getParameter("birthDate") != null && !request.getParameter("birthDate").isEmpty()) {
+            birthDate = LocalDate.parse(request.getParameter("birthDate"));
+        }
 
-             // Parse dates
-             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-             Date birthDate = birthDateStr != null && !birthDateStr.isEmpty() ? sdf.parse(birthDateStr) : null;
-             Date joinDate = sdf.parse(joinDateStr);
+        String gender = request.getParameter("gender");
+        String streetAddress = request.getParameter("streetAddress");
+        String city = request.getParameter("city");
+        String state = request.getParameter("state");
+        String postalCode = request.getParameter("postalCode");
+        String country = request.getParameter("country");
+        String membershipType = request.getParameter("membershipType");
 
-             // Create Customer object
-             Customer customer = new Customer(
-                     firstName, lastName, email, phone, gender,
-                     birthDate, joinDate, streetAddress, city,
-                     state, postalCode, country, membershipType
-             );
+        LocalDate joinDate = LocalDate.now();
+        if (request.getParameter("joinDate") != null && !request.getParameter("joinDate").isEmpty()) {
+            joinDate = LocalDate.parse(request.getParameter("joinDate"));
+        }
 
-             // DAO operation
-             CustomerDAO dao = new CustomerDAO();
-             boolean isSaved = dao.addCustomer(customer);
+        // Create customer object
+        Customer customer = new Customer(
+                firstName,
+                lastName,
+                email,
+                phone,
+                birthDate,
+                gender,
+                streetAddress,
+                city,
+                state,
+                postalCode,
+                country,
+                membershipType,
+                joinDate
+        );
 
-             if (isSaved) {
-                 request.setAttribute("success", "Customer added successfully!");
-             } else {
-                 request.setAttribute("error", "Error saving customer to database.");
-             }
+        // Add customer to database
+        boolean success = customerDAO.addCustomer(customer);
 
-         } catch (Exception e) {
-             e.printStackTrace();
-             request.setAttribute("error", "Something went wrong: " + e.getMessage());
-         }
+        // Set response message
+        if (success) {
+            request.setAttribute("success", "Customer added successfully!");
+        } else {
+            request.setAttribute("error", "Failed to add customer. Please try again.");
+        }
 
-        request.getRequestDispatcher("add-customer.jsp").forward(request, response);
-
-         }
+        // Forward back to the form page
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AddCustomer.jsp");
+        dispatcher.forward(request, response);
+    }
 }
-

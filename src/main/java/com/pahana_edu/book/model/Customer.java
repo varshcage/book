@@ -1,41 +1,53 @@
 package com.pahana_edu.book.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 public class Customer {
-    private int id;
-    private String firstName, lastName, email, phone, gender;
-    private Date birthDate, joinDate;
-    private String streetAddress, city, state, postalCode, country;
+    private int customerId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private LocalDate birthDate;
+    private String gender;
+    private String streetAddress;
+    private String city;
+    private String state;
+    private String postalCode;
+    private String country;
     private String membershipType;
+    private LocalDate joinDate;
 
-    public Customer() {}
+    // Constructors
+    public Customer() {
+    }
 
-    // Constructor without ID for adding new customer
-    public Customer(String firstName, String lastName, String email, String phone, String gender,
-                    Date birthDate, Date joinDate, String streetAddress, String city, String state,
-                    String postalCode, String country, String membershipType) {
-
+    public Customer(String firstName, String lastName, String email, String phone,
+                    LocalDate birthDate, String gender, String streetAddress,
+                    String city, String state, String postalCode, String country,
+                    String membershipType, LocalDate joinDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.gender = gender;
         this.birthDate = birthDate;
-        this.joinDate = joinDate;
+        this.gender = gender;
         this.streetAddress = streetAddress;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
         this.country = country;
         this.membershipType = membershipType;
+        this.joinDate = joinDate;
     }
 
-    public int getId() {
-        return id;
+    // Getters and Setters
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getFirstName() {
@@ -70,28 +82,20 @@ public class Customer {
         this.phone = phone;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public Date getJoinDate() {
-        return joinDate;
-    }
-
-    public void setJoinDate(Date joinDate) {
-        this.joinDate = joinDate;
     }
 
     public String getStreetAddress() {
@@ -140,5 +144,33 @@ public class Customer {
 
     public void setMembershipType(String membershipType) {
         this.membershipType = membershipType;
+    }
+
+    public LocalDate getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDate joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", birthDate=" + birthDate +
+                ", gender='" + gender + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", country='" + country + '\'' +
+                ", membershipType='" + membershipType + '\'' +
+                ", joinDate=" + joinDate +
+                '}';
     }
 }
