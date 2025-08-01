@@ -94,12 +94,17 @@
         </div>
     </nav>
     <div class="absolute bottom-0 w-full p-4 border-t border-indigo-700">
-        <div class="flex items-center">
-            <img class="w-10 h-10 rounded-full bg-gray-200" src="" alt="Profile">
-            <div class="ml-3">
-                <p class="text-sm font-medium">Admin</p>
-                <p class="text-xs text-indigo-300">Administrator</p>
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <img class="w-10 h-10 rounded-full bg-gray-200" src="" alt="Profile">
+                <div class="ml-3">
+                    <p class="text-sm font-medium">${sessionScope.username}</p>
+                    <p class="text-xs text-indigo-300">${sessionScope.role}</p>
+                </div>
             </div>
+            <a href="LogoutServlet" class="text-red-300 hover:text-white" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -127,6 +132,12 @@
                 <div class="relative">
                     <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <div class="relative">
+                    <a href="LogoutServlet" class="flex items-center space-x-2 text-gray-700 hover:text-indigo-600">
+                        <span>Logout</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -326,35 +337,6 @@
     </main>
 </div>
 
-<!-- Login Modal -->
-<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"
-     data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog relative w-auto pointer-events-none">
-        <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            <form method="post" action="login.jsp" class="rounded-lg">
-                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md bg-indigo-600 text-white">
-                    <h5 class="text-xl font-medium leading-normal" id="loginModalLabel">Login</h5>
-                </div>
-                <div class="modal-body relative p-4">
-                    <div class="mb-4">
-                        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" name="username" id="username" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" name="password" id="password" required>
-                    </div>
-                </div>
-                <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        Login
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <!-- Scripts -->
 <script>
     // Toggle sidebar on mobile
@@ -401,12 +383,6 @@
                 }
             }
         });
-
-        // Initialize modal if not logged in
-        <c:if test="${empty loggedIn or !loggedIn}">
-        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-        loginModal.show();
-        </c:if>
     });
 </script>
 </body>

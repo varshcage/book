@@ -25,6 +25,10 @@
             background-color: #4f46e5;
             color: white;
         }
+        .role-btn2.active {
+            background-color: #2FDE0D;
+            color: white;
+        }
         .input-field:focus {
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
         }
@@ -49,7 +53,7 @@
                 <button type="button" id="admin-btn" class="role-btn active px-4 py-2 text-sm font-medium rounded-l-lg border border-gray-200 hover:bg-indigo-50">
                     <i class="fas fa-user-shield mr-2"></i>Admin
                 </button>
-                <button type="button" id="cashier-btn" class="role-btn px-4 py-2 text-sm font-medium rounded-r-lg border border-gray-200 hover:bg-indigo-50">
+                <button type="button" id="cashier-btn" class="role-btn2 px-4 py-2 text-sm font-medium rounded-r-lg border border-gray-200 hover:bg-indigo-50">
                     <i class="fas fa-cash-register mr-2"></i>Cashier
                 </button>
             </div>
